@@ -15,6 +15,7 @@ namespace Basic
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,9 +26,14 @@ namespace Basic
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            // The default URL routing logic used by ASP.NET MVC uses a format like this to determine what code to invoke.
+            // When you run the application and don't supply any URL segments, it defaults to the "Home" controller and
+            // the "Index" action method specified in the defaults section of the code above.
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
