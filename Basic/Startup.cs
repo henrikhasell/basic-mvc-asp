@@ -15,7 +15,7 @@ namespace Basic
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MovieContext>(options => options.UseSqlServer(configuration.GetConnectionString("LocalConnection")));
+            services.AddDbContext<SchoolContext>(options => options.UseSqlServer(configuration.GetConnectionString("LocalConnection")));
             services.AddMvc();
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
